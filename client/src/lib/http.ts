@@ -117,6 +117,8 @@ const request = async <Response>(
         }
       );
     } else if (res.status === AUTHENTICATION_ERROR_STATUS) {
+      console.log(res);
+      console.log("Not Auth");
       if (isClient) {
         if (!clientLogoutRequest) {
           clientLogoutRequest = fetch("/api/auth/logout", {
@@ -129,6 +131,7 @@ const request = async <Response>(
           try {
             await clientLogoutRequest;
           } catch (error) {
+            console.log(error);
           } finally {
             localStorage.removeItem("accessToken");
             localStorage.removeItem("refreshToken");
@@ -158,8 +161,8 @@ const request = async <Response>(
     const normalizeUrl = normalizePath(url);
     if (["api/auth/login", "api/guest/auth/login"].includes(normalizeUrl)) {
       const { accessToken, refreshToken } = (payload as LoginResType).data;
-      localStorage.setItem("accessToken", JSON.stringify(accessToken));
-      localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
       //   setAccessTokenToLocalStorage(accessToken);
       //   setRefreshTokenToLocalStorage(refreshToken);
     } else if (

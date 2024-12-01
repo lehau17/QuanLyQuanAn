@@ -21,7 +21,7 @@ const authApiRequest = {
       }
     );
   },
-  logout: () => http.post("/auth/login", null, { baseUrl: "" }),
+  logout: () => http.post("api/auth/logout", null, { baseUrl: "" }),
 };
 
 export default authApiRequest;
