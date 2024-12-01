@@ -117,8 +117,6 @@ const request = async <Response>(
         }
       );
     } else if (res.status === AUTHENTICATION_ERROR_STATUS) {
-      console.log(res);
-      console.log("Not Auth");
       if (isClient) {
         if (!clientLogoutRequest) {
           clientLogoutRequest = fetch("/api/auth/logout", {
