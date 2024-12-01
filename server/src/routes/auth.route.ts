@@ -16,7 +16,7 @@ import { MessageRes, MessageResType } from '@/schemaValidations/common.schema'
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
 
 export default async function authRoutes(fastify: FastifyInstance, options: FastifyPluginOptions) {
-  fastify.post<{ Reply: MessageResType; Body: LogoutBodyType }>(
+  fastify.post<{ Reply: MessageResType; Body: { refreshToken: string } }>(
     '/logout',
     {
       schema: {
